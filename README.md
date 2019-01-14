@@ -4,29 +4,29 @@
 
 install docker compose :
 `sudo curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose`\
-Mettre les droits :\
+Mettre les droits :
 `sudo chmod +x /usr/local/bin/docker-compose`\
-Tester l’installation : \
+Tester l’installation :
 `docker-compose --version`\
 
 ### Créer une App 
 
-Installer node, npm et express \
-Creer app.js ( afficher hello world ) \
+Installer node, npm et express
+Creer app.js ( afficher hello world )
 
 ### Créer un Dockerfile
 
-FROM dernier version debian \
-RUN apt update -y ( pour valider automatiquement) node npm ( toutes les installations dans un seul run pour alléger l’image ) \
+FROM dernier version debian
+RUN apt update -y ( pour valider automatiquement) node npm ( toutes les installations dans un seul run pour alléger l’image )
 
--> error lors de l’installation de nodejs : nous avons donc installé également curl , gnupg, gnupg1, gnupg2 \
+-> error lors de l’installation de nodejs : nous avons donc installé également curl , gnupg, gnupg1, gnupg2
 
-créer un dossier dans user/tp \
-WORKDIR: définie l’espace de travail ( user/tp ) \
-Copy package.json et app.js dans l’espace de travail \
-RUN npm update : ( appliquer les dépendance liée à node ) \
-Ouvre le port 3000 (le même quand dans l’application ) \
-CMD : lancer une commande une fois que le conteneur est lancé\
+créer un dossier dans user/tp
+WORKDIR: définie l’espace de travail ( user/tp )
+Copy package.json et app.js dans l’espace de travail
+RUN npm update : ( appliquer les dépendance liée à node )
+Ouvre le port 3000 (le même quand dans l’application )
+CMD : lancer une commande une fois que le conteneur est lancé
 
 ### Créer une seconde image ( pour la base de donnée)
 
