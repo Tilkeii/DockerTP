@@ -2,7 +2,7 @@
 
 ### Docker compose installation
 
-install docker compose :
+install docker compose : \
 `sudo curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose` \
 Mettre les droits : \
 `sudo chmod +x /usr/local/bin/docker-compose` \
@@ -31,8 +31,8 @@ CMD : lancer une commande une fois que le conteneur est lancé
 npm install mysql --save : ajouter la dépendance avec myspql (node)  -> rebuild \
 `docker build -t node-app .`
 
-Permet de démarrer le conteneur (-d en back ground)
-`docker run -d --rm --name node-app node-app` \
+Permet de démarrer le conteneur (-d en back ground) \
+`docker run -d --rm --name node-app node-app`
 
 ### Créer script sql
 
