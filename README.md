@@ -2,7 +2,7 @@
 
 ### Docker compose installation
 
-install docker compose : \
+install docker compose :
 `sudo curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose` \
 Mettre les droits : \
 `sudo chmod +x /usr/local/bin/docker-compose` \
@@ -11,10 +11,10 @@ Tester l’installation : \
 
 ### Créer une App 
 
-Installer node, npm et express \
+Installer node, npm et express
 Creer app.js (afficher hello world)
 
-### Créer un Dockerfile
+### Créer un Dockerfile pour l'application
 
 FROM dernier version debian \
 RUN apt update -y (pour valider automatiquement) node npm (toutes les installations dans un seul run pour alléger l’image)
@@ -22,11 +22,17 @@ RUN apt update -y (pour valider automatiquement) node npm (toutes les installati
 -> error lors de l’installation de nodejs : nous avons donc installé également curl , gnupg, gnupg1, gnupg2
 
 créer un dossier dans /usr/tp \
-WORKDIR: définie l’espace de travail (user/tp) \
+WORKDIR: définie l’espace de travail (/usr/tp) \
 COPY package.json et app.js dans l’espace de travail \
 RUN npm update : (appliquer les dépendance liée à node) \
 EXPOSE 3000 Ouvre le port 3000 (le même quand dans l’application) \
 CMD : lancer une commande une fois que le conteneur est lancé
+
+npm install mysql --save : ajouter la dépendance avec myspql (node)  -> rebuild \
+`docker build -t node-app .`
+
+Permet de démarrer le conteneur (-d en back ground)
+`docker run -d --rm --name node-app node-app` \
 
 ### Créer script sql
 
@@ -36,13 +42,12 @@ Créer un fichier start.sql : il permet d’initialiser la base de donnée (cré
 
 docker pull mysql:5.6 (récupérer mysql 5.6 sur docker hub public car nous avons rencontré des erreurs avec la version 8)
  
-Copier le script start.sql sans le dossier docker-entrypoint-initdb.d (dossier qui est automatiquement)
+Copier le script start.sql sans le dossier docker-entrypoint-initdb.d (dossier qui est automatiquement executé)
 
-`docker run -d --rm --name my-mysql -e MYSQL_ROOT_PASSWORD=1234 my-mysql` \
+Permet de build l'image my-mysql
+`docker build -t my-mysql .` \
 Permet de démarrer le conteneur (-d en back ground)
-
-npm install mysql --save : ajouter la dépendance avec myspql (node)  -> rebuild \
-`docker build -t node-app .`
+`docker run -d --rm --name my-mysql -e MYSQL_ROOT_PASSWORD=1234 my-mysql` \
 
 ajouter --rm dans les commande run pour les supprimer lorsqu’on les stop.
 
@@ -51,7 +56,7 @@ ajouter --rm dans les commande run pour les supprimer lorsqu’on les stop.
 On modifie le code de l’app pour se connecter et récupérer les data de la base de donnée \
 Modifie l’hostname “localhost” en db
 
-Ensuite on créer un fichier docker-compose.yml pour mettre démarrer les deux dockers et d’ajouter certaine contrainte (comme attendre le démarrage de la base de donnée avant de s’y connecter)
+Ensuite on créer un fichier docker-compose.yml pour démarrer les deux dockers et ajouter certaine contrainte (comme attendre le démarrage de la base de donnée avant de s’y connecter)
 
 Lancer le docker-compose.yml pour démarrer les containeurs : \
 `docker-compose up`
