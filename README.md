@@ -25,7 +25,7 @@ créer un dossier dans /usr/tp \
 WORKDIR: définie l’espace de travail (user/tp) \
 COPY package.json et app.js dans l’espace de travail \
 RUN npm update : (appliquer les dépendance liée à node) \
-EXPOSE 300 Ouvre le port 3000 (le même quand dans l’application) \
+EXPOSE 3000 Ouvre le port 3000 (le même quand dans l’application) \
 CMD : lancer une commande une fois que le conteneur est lancé
 
 ### Créer script sql
