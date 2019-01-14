@@ -23,7 +23,7 @@ RUN apt update -y ( pour valider automatiquement) node npm ( toutes les installa
 
 créer un dossier dans user/tp \
 WORKDIR: définie l’espace de travail ( user/tp ) \
-Copy package.json et app.js dans l’espace de travail \
+COPY package.json et app.js dans l’espace de travail \
 RUN npm update : ( appliquer les dépendance liée à node ) \
 EXPOSE 300 Ouvre le port 3000 (le même quand dans l’application ) \
 CMD : lancer une commande une fois que le conteneur est lancé
@@ -38,7 +38,7 @@ Permet de démarrer le serveur ( -d en back ground )
 npm install mysql --save : ajouter la dépendance avec myspql ( node )  -> rebuild \
 `docker build -t node-app .`
 
-! erreur car les conteneur sont arreter mais ne tourne plus -> ajouter --rm dans les commande run pour les supprimer lorsqu’on les stop.
+ajouter --rm dans les commande run pour les supprimer lorsqu’on les stop.
 
 Créer un fichier start.sql : il permet d’initialiser la base de donnée ( créer un table et la remplir )
 
