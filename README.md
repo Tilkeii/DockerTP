@@ -21,30 +21,30 @@ RUN apt update -y (pour valider automatiquement) node npm (toutes les installati
 
 -> error lors de l’installation de nodejs : nous avons donc installé également curl , gnupg, gnupg1, gnupg2
 
-créer un dossier dans user/tp \
+créer un dossier dans /usr/tp \
 WORKDIR: définie l’espace de travail (user/tp) \
 COPY package.json et app.js dans l’espace de travail \
 RUN npm update : (appliquer les dépendance liée à node) \
 EXPOSE 300 Ouvre le port 3000 (le même quand dans l’application) \
 CMD : lancer une commande une fois que le conteneur est lancé
 
-### Créer une seconde image ( pour la base de donnée)
+### Créer script sql
 
-docker pull mysql:5.6 (récupérer mysql 5.6 sur docker hub public car nous avons rencontré des erreures avec la version 8)
+Créer un fichier start.sql : il permet d’initialiser la base de donnée (créer une table et la rempli)
 
-`docker run --name node-mysql -e MYSQL_ROOT_PASSWORD=1234 -d mysql:latest`\
-Permet de démarrer le serveur (-d en back ground)
+### Créer une seconde image (pour la base de donnée)
+
+docker pull mysql:5.6 (récupérer mysql 5.6 sur docker hub public car nous avons rencontré des erreurs avec la version 8)
+ 
+Copier le script start.sql sans le dossier docker-entrypoint-initdb.d (dossier qui est automatiquement)
+
+`docker run -d --rm --name my-mysql -e MYSQL_ROOT_PASSWORD=1234 my-mysql` \
+Permet de démarrer le conteneur (-d en back ground)
 
 npm install mysql --save : ajouter la dépendance avec myspql (node)  -> rebuild \
 `docker build -t node-app .`
 
 ajouter --rm dans les commande run pour les supprimer lorsqu’on les stop.
-
-Créer un fichier start.sql : il permet d’initialiser la base de donnée (créer un table et la remplir)
-
-On créer un docker file pour mysql :
-
-`docker run -d --rm --name my-mysql -e MYSQL_ROOT_PASSWORD=1234 my-mysql`
 
 ### Connection 
 
