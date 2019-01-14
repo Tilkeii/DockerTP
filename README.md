@@ -53,4 +53,5 @@ Modifie l’hostname “localhost” en db
 
 Ensuite on créer un fichier docker-compose.yml pour mettre démarrer les deux dockers et d’ajouter certaine contrainte ( comme attendre le démarrage de la base de donnée avant de s’y connecter)
 
-Lancer le docker-compose.yml pour démarrer les containeurs : docker-compose up
+Lancer le docker-compose.yml pour démarrer les containeurs : \
+`docker-compose up`
